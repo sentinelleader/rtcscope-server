@@ -80,6 +80,21 @@ Screenshots of raw rendered graphs
 Realtime Rendering/Updating of the graphs - (Links will be added soon)
 
 
+# Docker Setup
+
+	$ sudo docker build -t rtcscope_server .
+
+	$ sudo docker run -i -p 8000:8000 -t rtcscope_server
+
+
+  Access the WebRTC demo page via `localhost:8000/demo`
+
+  For `boot2docker` users, we need to create an ssh tunnel to access the url via `localhost` instead of the `boot2docker` ip.
+
+	# For creating ssh tunnel onto boot2docker machine,
+
+	$ boot2docker ssh -L 8000:localhost:8000
+
 # TO-DO
 
   This is not even an alpha version, just an idea made into a prototype. We are working on making this simple prototype into a real usefull product for the WebRTC community :)
