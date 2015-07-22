@@ -55,15 +55,12 @@ app.config['DEBUG'] = True
 client = InfluxDBClient('localhost', 8086, 'test', 'test', 'mydb')
 
 def collect_real_stats(graph_type, graph_dur, graph_int):
-  start = time.time()
   json_arr = {}
   query = "SELECT mean(" + graph_type + ") FROM rtc_stats WHERE time > now() - " + graph_dur + " GROUP BY time(" + graph_int + "), id"
   result = client.query(query)
   for i in (result.keys()):
     json_id =  (i[1])['id']
     json_arr[json_id] = list(result.get_points(tags={"id": json_id}))
-  diff = time.time() - start
-  print "processing time --> %s" %diff
   return json.dumps(json_arr)
 
 def collect_call_stats(graph_type, graph_id):
@@ -86,29 +83,33 @@ def collect_call_stats(graph_type, graph_id):
   json_arr = list(result.get_points(measurement='rtc_stats'))
   return json.dumps(json_arr)
 
-@app.route('/v1/stats/write/', methods=['POST'])
-#@crossdomain(origin='*')
-def write_stats():
-  data = {}
+def write_metrics(metric_array):
   data_points = {}
   data_points["tags"] = {}
   data_points["fields"] = {}
   data_points["measurement"] = "rtc_stats"
-  data_array = (request.form['rtc_stats,id']).split(" ")
-  data_points["tags"]["id"] = data_array[0]
-  data_points["times"] = data_array[2]
-  for i in data_array[1].split(','):
+  data_points["tags"]["id"] = metric_array[0]
+  data_points["times"] = metric_array[2]
+  for i in metric_array[1].split(','):
     field_array = i.split("=")
     data_points["fields"][field_array[0]] = float(field_array[1])
-
   result = client.write_points([data_points])
-  return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
+  return result
+
+@app.route('/v1/stats/write/', methods=['POST'])
+#@crossdomain(origin='*')
+def write_stats():
+  data_array = (request.form['rtc_stats,id']).split(" ")
+  resp = write_metrics(data_array)
+  if resp == True:
+    return json.dumps({'success':True}), 200, {'ContentType':'application/json'}
+  else:
+    abort(500)
 
 @app.route('/v1/stats/', methods=['GET'])
 @crossdomain(origin='*')
 def get_stats():
   graph_type = request.args['type']
-  print graph_type
   default_duration = "5m"
   default_interval = "10s"
   json_data = collect_real_stats(graph_type, default_duration, default_interval)
@@ -129,7 +130,6 @@ def gen_graph(graph_name):
 @app.route('/js/<path:filename>')
 def serve_static(filename):
     root_dir = "/root/inf/rtcscope"
-    print root_dir
     return send_from_directory(os.path.join(root_dir, 'static', 'js'), filename)
 
 if __name__ == '__main__':
