@@ -178,8 +178,7 @@ function gotRemoteStream(e) {
 
         $.ajax({
           type: "POST",
-//          url: "http://172.16.16.32:8086/write?db=mydb",
-	  url: "http://172.16.16.32:8000/v1/stats/write/",
+	  url: "http://localhost:8000/v1/stats/write/",
           data: data,
           success: function(result, status) {
             console.log("Influx status ", result, status)
