@@ -20,6 +20,21 @@ Graphs are rendered and updated in real time(updates automatically when a new ca
 
 	$ python app.py
 
+
+# API Endpoints:
+
+```
+  /v1/stats/write/  - POST -  Injects Metric onto InfluxDB
+  
+  /v1/stats/ - GET - Returns JSON metrics for realtime calls
+  
+  /v1/stats/<call-id>/ - GET - Returns JSON metrics for a particular call id
+  
+  /demo/  - GET - Returns a webrtc demo page for testing
+  
+  /graph/<graph-name>/ - GET - Returns raw realtime graph for a particular property
+```
+
 # Screenshots
 
 Screenshots of raw rendered graphs
@@ -27,20 +42,28 @@ Screenshots of raw rendered graphs
 
 ###### Available-Bandwidth
 
+* ```URL  /graph/availableBandwidth/```
+
 ![Alt text](/screenshots/availableBandwidth.png?raw=true "Available Bandwidth")
 
 
 ###### Round Trip Delay Time
+
+* ```URL  /graph/rtt/```
 
 ![Alt text](/screenshots/rtt.png?raw=true "Round Trip Delay Time")
 
 	
 ###### Input Level
 
+* ```URL  /graph/inputLevel/```
+
 ![Alt text](/screenshots/InputLevel.png?raw=true "Input Level")
 
 
 ###### Packet Lost
+
+* ```URL  /graph/packetsLost/```
 
 ![Alt text](/screenshots/PacketLost.png?raw=true "Packet Lost")
 

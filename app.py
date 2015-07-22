@@ -127,10 +127,19 @@ def gen_graph(graph_name):
   file_name = graph_name + ".html"
   return app.send_static_file(file_name)
 
+@app.route("/demo/")
+def load_demo():
+  return app.send_static_file('demo.html')
+
 @app.route('/js/<path:filename>')
-def serve_static(filename):
-    root_dir = "/root/inf/rtcscope"
+def serve_js_static(filename):
+    root_dir = "/opt/rtcscope-server"
     return send_from_directory(os.path.join(root_dir, 'static', 'js'), filename)
+
+@app.route('/css/<path:filename>')
+def serve_css_static(filename):
+    root_dir = "/opt/rtcscope-server"
+    return send_from_directory(os.path.join(root_dir, 'static', 'css'), filename)
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=8000, debug=True)
