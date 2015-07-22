@@ -127,7 +127,7 @@ def gen_graph(graph_name):
   file_name = graph_name + ".html"
   return app.send_static_file(file_name)
 
-@app.route("/demo/")
+@app.route("/demo")
 def load_demo():
   return app.send_static_file('demo.html')
 

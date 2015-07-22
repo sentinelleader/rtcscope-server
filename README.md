@@ -37,6 +37,12 @@ Graphs are rendered and updated in real time(updates automatically when a new ca
 
 # Screenshots
 
+###### Demo Page
+
+* ```URL  /demo```
+
+![Alt text](/screenshots/demo.png.png?raw=true "Demo")
+
 Screenshots of raw rendered graphs
 
 
