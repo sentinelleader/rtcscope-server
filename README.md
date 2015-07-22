@@ -25,22 +25,22 @@ Graphs are rendered and updated in real time(updates automatically when a new ca
 Screenshots of raw rendered graphs
 
 
-Available-Bandwidth
+###### Available-Bandwidth
 
 ![Alt text](/screenshots/availableBandwidth.png?raw=true "Available Bandwidth")
 
 
-Round Trip Delay Time
+###### Round Trip Delay Time
 
 ![Alt text](/screenshots/rtt.png?raw=true "Round Trip Delay Time")
 
 	
-Input Level
+###### Input Level
 
 ![Alt text](/screenshots/InputLevel.png?raw=true "Input Level")
 
 
-Packet Lost
+###### Packet Lost
 
 ![Alt text](/screenshots/PacketLost.png?raw=true "Packet Lost")
 
