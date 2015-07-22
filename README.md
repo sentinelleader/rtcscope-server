@@ -84,7 +84,7 @@ Realtime Rendering/Updating of the graphs - (Links will be added soon)
 
 	$ sudo docker build -t rtcscope_server .
 
-	$ sudo docker run -i -p 8000:8000 -t rtcscope_server
+	$ sudo docker run -i -p 8000:8000 -p 8083:8083 -p 8086:8086 -t rtcscope_server
 
 
   Access the WebRTC demo page via `localhost:8000/demo`
@@ -93,7 +93,13 @@ Realtime Rendering/Updating of the graphs - (Links will be added soon)
 
 	# For creating ssh tunnel onto boot2docker machine,
 
-	$ boot2docker ssh -L 8000:localhost:8000
+	$ boot2docker ssh -L 8000:localhost:8000   # For API server
+
+	$ boot2docker ssh -L 8086:localhost:8086   # For influxdb
+
+	$ boot2docker ssh -L 8083:localhost:8083   # For influxdb admin ui
+
+   Also, create a database `mydb` and a db user with username `test` and password `test`. This credential is being used by the API server to connect to the InfluxDB
 
 # TO-DO
 
