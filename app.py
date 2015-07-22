@@ -1,6 +1,6 @@
 from influxdb import InfluxDBClient
 import json, time, os
-from flask import Flask, request, Response, send_from_directory
+from flask import Flask, request, Response, send_from_directory, abort
 from datetime import timedelta
 from flask import make_response, request, current_app
 from functools import update_wrapper
