@@ -24,6 +24,8 @@ Graphs are rendered and updated in real time(updates automatically when a new ca
 # API Endpoints:
 
 ```
+  /dashboard - GET - Simple UI using Twitter Bootstrap
+
   /v1/stats/write/  - POST -  Injects Metric onto InfluxDB
   
   /v1/stats/ - GET - Returns JSON metrics for realtime calls
@@ -37,7 +39,17 @@ Graphs are rendered and updated in real time(updates automatically when a new ca
 
 # Screenshots
 
+
+
 ###### Demo Page
+
+* ```Dashboard /dashboard```
+
+![Alt text](/screenshots/rtcscope-dash.png?raw=true "Dashboard1")
+
+![Alt text](/screenshots/rtt-dash.png?raw=true "Dashboard2")
+
+![Alt text](/screenshots/il-dash.png?raw=true "Dashboard3")
 
 * ```URL  /demo```
 

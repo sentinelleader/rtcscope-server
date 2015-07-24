@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>RTCScope Visualizer</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/offcanvas.css" rel="stylesheet">
+    <script src="/js/Chart.min.js"></script>
+    <script src="/js/jquery-1.11.3.min.js"></script>
+    <script src="/js/rtcgraph.js", type="text/javascript"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <nav class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">RTCScope</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/dashboard">Home</a></li>
+	    <li class="dropdown">
+	      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Visualize<span class="caret"></span></a>
+	      <ul class="dropdown-menu sub-menu">
+	        <li><a href="/dashboard/realtime.html">Realtime Graphs</a></li>
+		<li><a href="#">Custom Graphs</a></li>
+	      </ul>
+	    </li>
+            <li><a href="/demo">Demo</a></li>
+          </ul>
+        </div><!-- /.nav-collapse -->
+      </div><!-- /.container -->
+    </nav><!-- /.navbar -->
+
+
+    <div class="container">
+
+      <div class="row row-offcanvas row-offcanvas-right">
+
+        <div class="col-xs-9 col-sm-9">
+          <p class="pull-right visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+          </p>
+          <div class="row">
+            <div class="col-xs-6 col-lg-9">
+              <h2>Welcome To <code>RTCScope</code> Dashboard</h2>
+	      <p>&nbsp;</p>
+	      <p>&nbsp;</p>
+	      <p> <code>RTCScope.js</code> is a Javascript library that can extract the WebRTC stats from a WebRTC based applications. This dashboard visaulizes the extracted WebRTC stats in graphs</p>
+	      <p>&nbsp;</p>
+	      <p> This dashboard provides separate options to visualize stats in Realtime for the Ongoing calls as well as adhoc graphs for finished graphs also </p>
+	      <p>&nbsp;</p>
+	      <p> For simple testing, a <code>Demo</code> page is also included to simualte a simple WebRTC call from your Browser </p>
+	      <p>&nbsp;</p>
+	      <p>&nbsp;</p>
+	      <p>&nbsp;</p>
+            </div><!--/.col-xs-6.col-lg-4-->
+          </div><!--/row-->
+        </div><!--/.col-xs-12.col-sm-9-->
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <p>Dedicated to WebRTC Community :)</p>
+      </footer>
+
+    </div><!--/.container-->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/js/bootstrap.min.js"></script>
+
+    <script src="/js/offcanvas.js"></script>
+  </body>
+</html>
+
