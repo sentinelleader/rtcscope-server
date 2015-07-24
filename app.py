@@ -131,6 +131,15 @@ def gen_graph(graph_name):
 def load_demo():
   return app.send_static_file('demo.html')
 
+@app.route("/dashboard")
+def load_test():
+  return app.send_static_file('dashboard.html')
+
+@app.route('/dashboard/<filename>')
+def serve_html_static(filename):
+    root_dir = "/opt/rtcscope-server"
+    return send_from_directory(os.path.join(root_dir, 'static', 'types'), filename)
+
 @app.route('/js/<path:filename>')
 def serve_js_static(filename):
     root_dir = "/opt/rtcscope-server"
