@@ -66,6 +66,8 @@ Graphs are rendered and updated in real time(updates automatically when a new ca
 
 ![Alt text](/screenshots/il-dash.png?raw=true "Dashboard3")
 
+![Alt text](/screenshots/adhoc.png?raw=true "Dashboard4")
+
 * ```URL  /demo```
 
 ![Alt text](/screenshots/demo.png?raw=true "Demo")

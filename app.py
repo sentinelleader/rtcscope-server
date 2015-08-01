@@ -96,6 +96,14 @@ def write_metrics(metric_array):
   result = client.write_points([data_points])
   return result
 
+def collect_custom_stats(graph_type, start_time, end_time):
+  json_arr = {}
+  query = "SELECT MEAN(" + graph_type + ") FROM rtc_stats WHERE time > '" + start_time + "'  AND time < '" + end_time + "' GROUP BY time(30s), id"
+  print "query -> %s" %query
+  result = client.query(query)
+  json_arr = list(result.get_points(measurement='rtc_stats'))
+  return json.dumps(json_arr)
+
 @app.route('/v1/stats/write/', methods=['POST'])
 #@crossdomain(origin='*')
 def write_stats():
@@ -113,6 +121,31 @@ def get_stats():
   default_duration = "5m"
   default_interval = "10s"
   json_data = collect_real_stats(graph_type, default_duration, default_interval)
+  return json_data, 200
+
+@app.route('/v1/stats/interval/', methods=['GET'])
+@crossdomain(origin='*')
+def get_stats_interval():
+  graph_type = request.args['type']
+  default_duration = request.args['duration']
+  if default_duration == "10m":
+    default_interval = "30s"
+  elif default_duration == "30m":
+    default_interval = "2m"
+  else:
+    default_duration = "1h"
+    default_interval = "5m"
+  json_data = collect_real_stats(graph_type, default_duration, default_interval)
+  return json_data, 200
+
+@app.route('/v1/stats/timerange/', methods=['GET'])
+@crossdomain(origin='*')
+def get_stats_timerange():
+  graph_type = request.args['type']
+  graph_start_time = request.args['start']
+  graph_end_time = request.args['end']
+  json_data = collect_custom_stats(graph_type, graph_start_time, graph_end_time)
+  print json_data
   return json_data, 200
 
 @app.route("/v1/stats/<call_id>/", methods=['GET'])
@@ -149,6 +182,11 @@ def serve_js_static(filename):
 def serve_css_static(filename):
     root_dir = "/opt/rtcscope-server"
     return send_from_directory(os.path.join(root_dir, 'static', 'css'), filename)
+
+@app.route('/fonts/<filename>')
+def serve_fonts_static(filename):
+    root_dir = "/root/inf/rtcscope"
+    return send_from_directory(os.path.join(root_dir, 'static', 'fonts'), filename)
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=8000, debug=True)
