@@ -3,10 +3,25 @@ API/Dashboard server for [rtcscope.js](https://github.com/samirnaik/rtcscope.js)
 
 Graphs are rendered and updated in real time(updates automatically when a new call is started or when an ongoing call ends)
 
+####Table of Contents
 
-# Installation
+1. [Installation](#installation)
+	* [InfluxDB](#influxdb)
+	* [RTCScope-Server](#RTCScope-server)
+2. [API Endpoints](#api-endpoints)
+3. [Screenshots](#screenshots)
+	* [Demo Page](#demo-page)
+	* [Available Bandwidth](#available-bandwidth)
+	* [Round Trip Delay Time](#round-trip-delay-time)
+	* [Input Level](#input-level)
+	* [Packets Lost](#packet-lost)
+4. [Video](#video)
+5. [Docker Setup](#docker-setup)
+6. [TO-DO](#to-do)
 
-  InfluxDB
+## Installation
+
+####  InfluxDB
 
 	$ wget http://influxdb.s3.amazonaws.com/influxdb_0.9.1_amd64.deb
 
@@ -14,30 +29,30 @@ Graphs are rendered and updated in real time(updates automatically when a new ca
 
 	$ /opt/influxdb/influxd -config /etc/opt/influxdb/influxdb.conf
 
-  RTCScope-server
+####  RTCScope-server
 
 	$ git clone https://github.com/sentinelleader/rtcscope-server
 
 	$ python app.py
 
 
-# API Endpoints:
+## API Endpoints:
 
 ```
   /dashboard - GET - Simple UI using Twitter Bootstrap
 
   /v1/stats/write/  - POST -  Injects Metric onto InfluxDB
-  
+
   /v1/stats/ - GET - Returns JSON metrics for realtime calls
-  
+
   /v1/stats/<call-id>/ - GET - Returns JSON metrics for a particular call id
-  
+
   /demo/  - GET - Returns a webrtc demo page for testing
-  
+
   /graph/<graph-name>/ - GET - Returns raw realtime graph for a particular property
 ```
 
-# Screenshots
+## Screenshots
 
 
 
@@ -71,7 +86,7 @@ Screenshots of raw rendered graphs
 
 ![Alt text](/screenshots/rtt.png?raw=true "Round Trip Delay Time")
 
-	
+
 ###### Input Level
 
 * ```URL  /graph/inputLevel/```
@@ -86,13 +101,13 @@ Screenshots of raw rendered graphs
 ![Alt text](/screenshots/PacketLost.png?raw=true "Packet Lost")
 
 
-# Video
+## Video
 
 
 Realtime Rendering/Updating of the graphs - (Links will be added soon)
 
 
-# Docker Setup
+## Docker Setup
 
 	$ sudo docker build -t rtcscope_server .
 
@@ -113,6 +128,6 @@ Realtime Rendering/Updating of the graphs - (Links will be added soon)
 
    Also, create a database `mydb` and a db user with username `test` and password `test`. This credential is being used by the API server to connect to the InfluxDB
 
-# TO-DO
+## TO-DO
 
   This is not even an alpha version, just an idea made into a prototype. We are working on making this simple prototype into a real usefull product for the WebRTC community :)
